@@ -1,6 +1,12 @@
+"use client";
+
+import { useTheme } from "./context/ThemeContext";
+
 export default function Home() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-foreground">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-foreground transition-colors duration-300">
       <main className="flex w-full max-w-md flex-col items-center gap-8 text-center">
         <div className="flex flex-col items-center gap-3">
           <h1 className="text-3xl font-semibold tracking-tight">
@@ -11,19 +17,19 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="w-full rounded-2xl border border-border bg-surface p-6 text-left">
+        <div className="w-full rounded-2xl border border-border bg-surface p-6 text-left transition-colors duration-300">
           <h2 className="text-lg font-medium">Today</h2>
           <p className="mt-2 text-sm text-muted">
             Pick up where you left off. Your notes, your timeline, your calm.
           </p>
         </div>
 
-        {/* This button does nothing yet. Wiring it up is your job. */}
         <button
           type="button"
-          className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+          onClick={toggleTheme}
+          className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-all hover:opacity-90 active:scale-95 cursor-pointer"
         >
-          Switch to dark mode
+          Switch to {theme === "light" ? "dark" : "light"} mode
         </button>
       </main>
     </div>
